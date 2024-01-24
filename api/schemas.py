@@ -14,7 +14,14 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
-    
+
+class TokenBase(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str | None = None
+
 class ExamScoreBase(BaseModel):
     """Base ExamScore scheme"""
     examtitle: str
