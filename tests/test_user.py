@@ -34,7 +34,30 @@ def test_create_user():
     )
     assert response.status_code == 400
 
+@temp_db
 def test_get_all_user():
     client.post(
-        "/users/", json={"username": "foo", "password": "fo"}
+        "/users/", json={"username": "alice", "password": "abcdef"}
     )
+    response = client.get('/users/')
+    assert len(response.json()) == 1
+    client.post(
+        "/users/", json={"username": "bob", "password": "ghijkl"}
+    )
+    response = client.get('/users/')
+    assert len(response.json()) == 2
+    
+@temp_db
+def test_get_user_by_id():
+    client.post(
+        "/users/", json={"username": "alice", "password": "abcdef"}
+    )
+    client.post(
+        "/users/", json={"username": "bob", "password": "ghijkl"}
+    )
+    response = client.get('/users/1')
+    assert response.json()["username"] == 'alice'
+    response = client.get('/users/2')
+    assert response.json()["username"] == 'bob'
+
+    
