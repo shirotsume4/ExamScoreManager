@@ -1,6 +1,8 @@
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+
 from models.dao.dbengine import Base
+
 
 class ExamScore(Base):
     __tablename__ = "examscore"
