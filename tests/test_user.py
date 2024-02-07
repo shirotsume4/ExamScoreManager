@@ -1,7 +1,7 @@
 from starlette.testclient import TestClient
 
 from controller.main import app
-from models.dbengine.get_db import get_db
+from db.get_db import get_db
 
 client = TestClient(app)
 from relpath import add_import_path

@@ -8,7 +8,6 @@ from models.entity.user_entity import User
 
 def get_user_by_username_query(db: Session, username: str):
     """get user by username"""
-    print(db.query(User).filter(User.username==username).first())
     return db.query(User).filter(User.username == username).first()
 
 

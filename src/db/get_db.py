@@ -1,4 +1,4 @@
-from models.dbengine.dbengine import SessionLocal
+from db.dbengine import SessionLocal
 # Dependency
 def get_db():
     try:

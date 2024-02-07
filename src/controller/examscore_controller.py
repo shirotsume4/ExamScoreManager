@@ -1,10 +1,8 @@
 import models.schema.examscore_schema as exam_schema
 from fastapi import Depends, HTTPException, APIRouter
-from hashlib import sha256 as hash_func
 from sqlalchemy.orm import Session
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from models.dbengine.dbengine import Base, SessionLocal, engine
-from models.dbengine.get_db import get_db
+from fastapi.security import OAuth2PasswordBearer
+from db.get_db import get_db
 from usecases.examscore_usecase import (
     create_exam_query,
     get_examscore_by_title_query

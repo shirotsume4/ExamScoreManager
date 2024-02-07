@@ -2,9 +2,8 @@ import models.schema.user_schema as user_schema
 from fastapi import Depends, HTTPException, APIRouter
 from hashlib import sha256 as hash_func
 from sqlalchemy.orm import Session
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from models.dbengine.dbengine import Base, SessionLocal, engine
-from models.dbengine.get_db import get_db
+from fastapi.security import OAuth2PasswordRequestForm
+from db.get_db import get_db
 from usecases.user_usecase import (
     create_user_query,
     get_all_user_query,
