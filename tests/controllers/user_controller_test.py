@@ -4,9 +4,6 @@ from controller.main import app
 from db.get_db import get_db
 
 client = TestClient(app)
-from relpath import add_import_path
-
-add_import_path("../")  # ここで、importしたいツールの場所を相対参照で指定
 
 def temp_db(f):
     def func(SessionLocal, *args, **kwargs):
@@ -57,6 +54,7 @@ def test_get_user_by_id():
     assert response.json()["username"] == "alice"
     response = client.get("/users/2")
     assert response.json()["username"] == "bob"
+
 @temp_db
 def test_get_user_by_name():
     client.post("/users/", json={"username": "alice", "password": "abcdef"})
