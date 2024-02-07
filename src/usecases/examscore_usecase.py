@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 import models.schema.examscore_schema as schemas
-from models.dao.examscore_dao import ExamScore
+from models.entity.examscore_entity import ExamScore
 
 
 def get_examscore_by_title_query(db: Session, userid: int, examtitle: str):

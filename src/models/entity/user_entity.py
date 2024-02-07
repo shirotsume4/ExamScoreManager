@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-from models.dao.dbengine import Base
+from models.dbengine.dbengine import Base
 
 
 class User(Base):
