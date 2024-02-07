@@ -1,12 +1,9 @@
 from hashlib import sha256 as hash_func
 
-import uvicorn
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from relpath import add_import_path
 from sqlalchemy.orm import Session
 
-add_import_path("../")  # ここで、importしたいツールの場所を相対参照で指定
 import models.schemas.user_schema as user_schema
 from models.dao.dbengine import Base, SessionLocal, engine
 from services.user_service import (
@@ -71,7 +68,3 @@ def get_user_by_name(name, db: Session = Depends(get_db)):
     if not db_user:
         raise HTTPException(status_code=400, detail="User Not Found")
     return db_user
-
-
-if __name__ == "__main__":
-    uvicorn.run(app)
