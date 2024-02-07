@@ -2,12 +2,13 @@ from hashlib import sha256 as hash_func
 
 from sqlalchemy.orm import Session
 
-import models.schemas.user_schema as schemas
-from models.dao.user_dao import User
+import models.schema.user_schema as schemas
+from models.entity.user_entity import User
 
 
 def get_user_by_username_query(db: Session, username: str):
     """get user by username"""
+    print(db.query(User).filter(User.username==username).first())
     return db.query(User).filter(User.username == username).first()
 
 

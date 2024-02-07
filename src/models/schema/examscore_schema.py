@@ -10,8 +10,12 @@ class ExamScoreBase(BaseModel):
 
 
 class ExamScoreCreate(ExamScoreBase):
-    user_id: int
+    pass
 
 
 class ExamScore(ExamScoreBase):
+    user_id: int
     id: int
+
+    class Config:
+        orm_mode = True

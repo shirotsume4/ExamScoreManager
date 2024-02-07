@@ -1,12 +1,12 @@
 from starlette.testclient import TestClient
 
-from controller.main import app, get_db
+from controller.main import app
+from models.dbengine.get_db import get_db
 
 client = TestClient(app)
 from relpath import add_import_path
 
 add_import_path("../")  # ここで、importしたいツールの場所を相対参照で指定
-
 
 def temp_db(f):
     def func(SessionLocal, *args, **kwargs):
@@ -42,10 +42,10 @@ def test_create_user():
 @temp_db
 def test_get_all_user():
     client.post("/users/", json={"username": "alice", "password": "abcdef"})
-    response = client.get("/users/")
+    response = client.get("/users/all")
     assert len(response.json()) == 1
     client.post("/users/", json={"username": "bob", "password": "ghijkl"})
-    response = client.get("/users/")
+    response = client.get("/users/all")
     assert len(response.json()) == 2
 
 
@@ -57,3 +57,11 @@ def test_get_user_by_id():
     assert response.json()["username"] == "alice"
     response = client.get("/users/2")
     assert response.json()["username"] == "bob"
+@temp_db
+def test_get_user_by_name():
+    client.post("/users/", json={"username": "alice", "password": "abcdef"})
+    client.post("/users/", json={"username": "bob", "password": "ghijkl"})
+    response = client.get("/users/?name=alice")
+    assert response.json()["id"] == 1
+    response = client.get("/users/?name=bob")
+    assert response.json()["id"] == 2
