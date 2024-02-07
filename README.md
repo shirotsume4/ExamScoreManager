@@ -7,6 +7,6 @@ FastAPI,pytest,OAuth2の働きを学習するためのWebアプリです。
 # 使い方
 ```
 $ pip -r install requirements.txt
-$ python src/controller/main.py
+$ python src/run.py
 ```
 localhost:8000 で起動
