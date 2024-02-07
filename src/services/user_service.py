@@ -2,7 +2,7 @@ from hashlib import sha256 as hash_func
 
 from sqlalchemy.orm import Session
 
-import models.schemas.user_schema as schemas
+import models.schema.user_schema as schemas
 from models.dao.user_dao import User
 
 
