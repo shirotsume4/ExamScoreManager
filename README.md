@@ -6,4 +6,7 @@ FastAPI,TDD,OAuthの働きを学習するためのWebアプリです。
 
 # 使い方
 
-> pip -r install requirements.txt
+$ pip -r install requirements.txt
+$ python src/controller/main.py
+
+localhost:8000 で起動
