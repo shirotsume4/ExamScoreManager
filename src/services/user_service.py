@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from hashlib import md5 as hash_func
+from hashlib import sha256 as hash_func
 from models.dao.examscore_dao import ExamScore
 from models.dao.user_dao import User
 import models.schemas.user_schema as schemas

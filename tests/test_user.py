@@ -1,6 +1,8 @@
 from starlette.testclient import TestClient
-from src.controller.main import Base, get_db, app
+from controller.main import Base, get_db, app
 client = TestClient(app)
+from relpath import add_import_path
+add_import_path("../")  # ここで、importしたいツールの場所を相対参照で指定
     
 def temp_db(f):
     def func(SessionLocal, *args, **kwargs):

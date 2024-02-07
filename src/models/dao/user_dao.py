@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Date
 from sqlalchemy.orm import relationship
-from models.dao.DB import Base
+from models.dao.dbengine import Base
 
 class User(Base):
     __tablename__ = "user"
