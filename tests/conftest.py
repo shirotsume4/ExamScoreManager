@@ -2,7 +2,9 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import database_exists, drop_database
-from api.main import Base, get_db, app
+from relpath import add_import_path
+add_import_path("../")  # ここで、importしたいツールの場所を相対参照で指定
+from src.controller.main import Base, get_db, app
 TEST_SQLALCHEMY_DATABASE_URL = "sqlite:///./test_temp.db"
 
 @pytest.fixture(scope="function")

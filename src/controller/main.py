@@ -1,21 +1,22 @@
 import uvicorn
 from fastapi import Depends, FastAPI, HTTPException
+from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
-import sys
-import os
-import api.models as models
-import api.schemas as schemas
-from api.crud import (
+from relpath import add_import_path
+add_import_path("../")  # ここで、importしたいツールの場所を相対参照で指定
+from services.user_service import (
     get_all_user_query,
     get_user_by_id_query,
     get_user_by_username_query,
     create_user_query
 )
-from api.DB import engine, Base, SessionLocal
+from models.dao.DB import Base, engine,SessionLocal
+import models.schemas.examscore_schema as examscore_schema
+import models.schemas.user_schema as user_schema
 # table作成
-models.Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 app = FastAPI()
-
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 # Dependency
 def get_db():
     try:
@@ -25,8 +26,12 @@ def get_db():
         db.close()
     db.close()
 
-@app.post("/users/", response_model=schemas.User)
-def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+@app.get("/items/")
+def read_items(token: str = Depends(oauth2_scheme)):
+    return {"token": token}
+
+@app.post("/users/", response_model=user_schema.User)
+def create_user(user: user_schema.UserCreate, db: Session = Depends(get_db)):
     db_user = get_user_by_username_query(db=db, username=user.username)
     if db_user:
         raise HTTPException(status_code=400, detail="Same username found")

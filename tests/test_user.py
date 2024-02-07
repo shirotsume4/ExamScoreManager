@@ -1,5 +1,5 @@
 from starlette.testclient import TestClient
-from api.main import Base, get_db, app
+from src.controller.main import Base, get_db, app
 client = TestClient(app)
     
 def temp_db(f):
