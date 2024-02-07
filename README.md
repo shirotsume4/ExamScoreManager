@@ -9,4 +9,4 @@ FastAPI,pytest,OAuth2の働きを学習するためのWebアプリです。
 $ pip -r install requirements.txt
 $ make run
 ```
-localhost:8000/docs でドキュメントがみられる
+http://localhost:8000/docs でドキュメントがみられる
