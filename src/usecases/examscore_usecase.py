@@ -20,12 +20,12 @@ def get_examscore_by_id_query(db: Session, id: int):
 
 def get_all_examscore_by_user_query(db: Session, userid: int):
     """get all examscore by user"""
-    return db.query(ExamScore).filter(ExamScore.user_id == userid)
+    return db.query(ExamScore).filter(ExamScore.user_id == userid).all()
 
 
 def get_all_examscore_by_exam_query(db: Session, id: int):
     """get all examscore by examid"""
-    return db.query(ExamScore).filter(ExamScore.id == id)
+    return db.query(ExamScore).filter(ExamScore.id == id).all()
 
 
 def create_exam_query(db: Session, exam: schemas.ExamScoreCreate, user_id: int):

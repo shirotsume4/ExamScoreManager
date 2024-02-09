@@ -3,8 +3,8 @@ from relpath import add_import_path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import drop_database
+
 add_import_path("../src")  # ここで、importしたいツールの場所を相対参照で指定
-from controller.main import app
 from controller.main import Base
 
 TEST_SQLALCHEMY_DATABASE_URL = "sqlite:///test_temp.db"

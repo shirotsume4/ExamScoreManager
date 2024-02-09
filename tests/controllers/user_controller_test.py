@@ -5,6 +5,7 @@ from db.get_db import get_db
 
 client = TestClient(app)
 
+
 def temp_db(f):
     def func(SessionLocal, *args, **kwargs):
         # テスト用のDBに接続するためのsessionmaker instanse
@@ -54,6 +55,7 @@ def test_get_user_by_id():
     assert response.json()["username"] == "alice"
     response = client.get("/users/2")
     assert response.json()["username"] == "bob"
+
 
 @temp_db
 def test_get_user_by_name():
