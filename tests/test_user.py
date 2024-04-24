@@ -1,6 +1,6 @@
 from starlette.testclient import TestClient
 
-from controller.main import app
+from main import app
 from models.dbengine.get_db import get_db
 
 client = TestClient(app)
